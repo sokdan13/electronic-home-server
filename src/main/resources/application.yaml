@@ -1,0 +1,16 @@
+ktor:
+  application:
+    modules:
+      - com.example.ApplicationKt.module
+  deployment:
+    port: 8080
+
+database:
+  url: "jdbc:postgresql://ep-falling-dew-am1ty76c-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require"
+  driver: "org.postgresql.Driver"
+  user: "neondb_owner"
+  password: "npg_gz9onGYaZij3"
+
+jwt:
+  firebaseProjectId: "electronichome-6ed77"
+  managementToken: "dev-secret-123"
