@@ -46,7 +46,7 @@ fun Route.apartmentRoutes(repo: ApartmentRepository) {
 
         get("/apartments/my") {
             val userId = call.principal<JWTPrincipal>()!!
-                .payload.getClaim("uid").asString()
+                .payload.getClaim("sub").asString()
             val list = repo.findByUserId(userId)
             call.respond(ApiResponse(true, data = list))
         }
@@ -66,7 +66,7 @@ fun Route.apartmentRoutes(repo: ApartmentRepository) {
                 )
 
             val userId = call.principal<JWTPrincipal>()!!
-                .payload.getClaim("uid").asString()
+                .payload.getClaim("sub").asString()
             if (apt.userId != userId) {
                 return@get call.respond(
                     HttpStatusCode.Forbidden,

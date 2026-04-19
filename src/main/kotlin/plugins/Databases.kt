@@ -2,6 +2,7 @@ package com.example.plugins
 
 
 import com.example.data.table.ApartmentsTable
+import com.example.data.table.MetersTable
 import com.example.data.table.UsersTable
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
@@ -30,7 +31,7 @@ fun Application.configureDatabase() {
     Database.connect(hikari)
 
     transaction {
-        SchemaUtils.create(UsersTable, ApartmentsTable)
+        SchemaUtils.create(UsersTable, ApartmentsTable, MetersTable)
     }
 
     log.info("Database connected OK")
