@@ -6,6 +6,7 @@ import com.example.domain.ApartmentRequest
 import com.example.domain.ApartmentResponse
 import com.example.domain.ApproveRequest
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.Instant
 import java.util.UUID
@@ -55,7 +56,7 @@ class ApartmentRepository {
 
     fun findPending(): List<ApartmentResponse> = transaction {
         ApartmentsTable
-            .select { ApartmentsTable.status eq "PENDING" }
+            .selectAll().where { ApartmentsTable.status eq "PENDING" }
             .orderBy(ApartmentsTable.createdAt, SortOrder.ASC)
             .map { it.toResponse() }
     }
