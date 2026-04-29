@@ -1,10 +1,7 @@
 package com.example.plugins
 
 
-import com.example.data.table.ApartmentsTable
-import com.example.data.table.MetersTable
-import com.example.data.table.RequestsTable
-import com.example.data.table.UsersTable
+import com.example.data.table.*
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.server.application.*
@@ -32,7 +29,7 @@ fun Application.configureDatabase() {
     Database.connect(hikari)
 
     transaction {
-        SchemaUtils.create(UsersTable, ApartmentsTable, MetersTable, RequestsTable)
+        SchemaUtils.create(UsersTable, ApartmentsTable, MetersTable, RequestsTable, AnnouncementsTable, GuestPassTable)
     }
 
     log.info("Database connected OK")
